@@ -1,4 +1,4 @@
-package net.relaxism.devtools.resteasyjackson
+package net.relaxism.devtools.config
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
