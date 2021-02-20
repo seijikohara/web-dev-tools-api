@@ -34,7 +34,7 @@ dependencies {
 }
 
 group = "net.relaxism.devtools"
-version = "1.0.0-SNAPSHOT"
+version = "1.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -50,4 +50,9 @@ allOpen {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     kotlinOptions.javaParameters = true
+}
+
+val stage by tasks.registering {
+    group = "heroku"
+    dependsOn("quarkusBuild")
 }
