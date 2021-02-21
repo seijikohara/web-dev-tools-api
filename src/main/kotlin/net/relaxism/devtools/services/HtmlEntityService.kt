@@ -11,7 +11,7 @@ class HtmlEntityService {
     fun findByNameContaining(name: String, page: Page): Pagination<Html> {
         val count = Html.countByNameContaining(name)
         val entities = Html.findByNameContaining(name, page)
-        return Pagination(entities, page.index + 1, page.size, count.toInt())
+        return Pagination(entities, page.index, page.size, count.toInt())
     }
 
 }

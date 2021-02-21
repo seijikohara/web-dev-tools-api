@@ -1,13 +1,9 @@
 package net.relaxism.devtools.resources
 
 import io.quarkus.panache.common.Page
-import net.relaxism.devtools.entities.Html
 import net.relaxism.devtools.services.HtmlEntityService
 import net.relaxism.devtools.valueobjects.Pagination
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.QueryParam
+import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
 @Path("/api/html-entities")
@@ -16,9 +12,29 @@ class HtmlEntitiesResource(val htmlEntityService: HtmlEntityService) {
 
     @GET
     fun getHtmlEntities(
-        @QueryParam("name") name: String,
-        @QueryParam("page") page: Int,
-        @QueryParam("size") size: Int,
-    ): Pagination<Html> = htmlEntityService.findByNameContaining(name, Page.of(page - 1, size))
+        @QueryParam("name") @DefaultValue("") name: String,
+        @QueryParam("page") @DefaultValue("0") page: Int,
+        @QueryParam("size") @DefaultValue("50") size: Int,
+    ): Pagination<Entity> {
+        val paginationHtml = htmlEntityService.findByNameContaining(name, Page.of(page, size))
+
+        val entities = paginationHtml.content.map { html ->
+            Entity(html.name, html.code, html.code2, html.standard, html.dtd, html.description)
+        }
+
+        return Pagination(entities, paginationHtml.page, paginationHtml.pageSize, paginationHtml.totalElements)
+    }
+
+    data class Entity(
+        val name: String,
+        val code: Long,
+        val code2: Long?,
+        val standard: String?,
+        val dtd: String?,
+        val description: String?,
+    ) {
+        val entityReference: String
+            get() = "&#${code};" + if (code2 != null) "&#${code2};" else ""
+    }
 
 }
