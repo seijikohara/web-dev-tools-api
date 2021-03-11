@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.4.20"
-    kotlin("plugin.allopen") version "1.4.20"
+    kotlin("jvm") version "1.4.31"
+    kotlin("plugin.allopen") version "1.4.31"
     id("io.quarkus")
 }
 
@@ -16,7 +16,7 @@ val quarkusPlatformVersion: String by project
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("com.github.seancfoley:ipaddress:5.3.3")
-    implementation("com.google.guava:guava:30.0-jre")
+    implementation("com.google.guava:guava:30.1-jre")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-flyway")
     implementation("io.quarkus:quarkus-hibernate-orm")
@@ -28,7 +28,7 @@ dependencies {
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }
