@@ -1,1 +1,1 @@
-web: java -Dquarkus.http.port=$PORT $JAVA_OPTS -jar build/*-runner.jar
+web: java $JAVA_OPTS -javaagent:newrelic/newrelic.jar -Dquarkus.http.port=$PORT -jar build/*-runner.jar
