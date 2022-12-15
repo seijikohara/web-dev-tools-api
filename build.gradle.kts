@@ -15,7 +15,7 @@ val quarkusPlatformVersion: String by project
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    implementation("com.github.seancfoley:ipaddress:5.3.3")
+    implementation("com.github.seancfoley:ipaddress:5.4.0")
     implementation("com.google.guava:guava:30.1.1-jre")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-flyway")
